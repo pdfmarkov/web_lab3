@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Марков Петр, Лаб. №3</title>
+    <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
+</h:head>
+<h:body>
+    <div class="body">
+        <div class="shaded animated header">
+            <h1>Веб-программирование, Лаб. 3, Вариант № 10777</h1>
+            <div id="credit">
+                <img src="#{resource['img/avatar.png']}" alt="Аватар разработчика" />
+                <a href="https://github.com/pdfmarkov" class="illuminated animated" title="Перейти к профилю Github разработчика">Марков Петр Денисович, P3210</a>
+                </div>
+            <br/>
+            <h:outputText id="time" value="#{clock.time}" style="font-size: 20px"/><br/>
+            <h:commandButton id="updateTime" style="display: none" action="#{clock.updateTime}" update="time"/>
+            </div><br/>
+
+    <div class="main container">
+        <h:form>
+            <h:button class="continue" label="Check" value="Продолжить" outcome="check"/>
+        </h:form>
+    </div>
+    <div class="shaded animated footer">ИТМО<br/>2020</div>
+
+    <h:outputStylesheet library="css" name="stylesheet.css"/>
+    </div>
+    <script>
+    setInterval(function () {
+        document.getElementById('updateTime').click();
+    }, 13000);
+    </script>
+</h:body>
+</html>

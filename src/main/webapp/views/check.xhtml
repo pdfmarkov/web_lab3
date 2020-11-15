@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Марков Петр, Лаб. №3</title>
+    <link rel="shortcut icon" type="image/x-icon" href="#{resource['img/favicon.ico']}"/>
+</h:head>
+<h:body>
+
+    <div class="shaded animated header">
+        <h1>Веб-программирование, Лаб. 3, Вариант № 10777</h1>
+        <div id="credit">
+            <img src="#{resource['img/avatar.png']}" alt="Аватар разработчика" />
+            <a href="https://github.com/pdfmarkov" class="illuminated animated" title="Перейти к профилю Github разработчика">Марков Петр Денисович, P3210</a>
+        </div>
+        <br/>
+    </div>
+    <br/>
+
+    <canvas width="300px" height="300px" id="canvas">
+
+        Canvas not supported.
+
+    </canvas>
+
+    <h:form id="form">
+
+            <p:messages id="messages"/>
+
+
+                <h:outputLabel for="x" value="X"/>
+                <h:inputHidden id="x" required="true" value="#{bean.x}"/>
+        <br/>
+                <h:selectBooleanCheckbox value="false" id="bcb-3" render="messages" onclick="pressX(this.id)">-3</h:selectBooleanCheckbox>
+                <h:selectBooleanCheckbox value="false" id="bcb-2" render="messages" onclick="pressX(this.id)">-2</h:selectBooleanCheckbox>
+                <h:selectBooleanCheckbox value="false" id="bcb-1" render="messages" onclick="pressX(this.id)">-1</h:selectBooleanCheckbox>
+            <br/>
+                <h:selectBooleanCheckbox value="false" id="bcb0" render="messages" onclick="pressX(this.id)"> 0</h:selectBooleanCheckbox>
+                <h:selectBooleanCheckbox value="true" id="bcb1" render="messages" onclick="pressX(this.id)"> 1</h:selectBooleanCheckbox>
+                <h:selectBooleanCheckbox value="false" id="bcb2" render="messages" onclick="pressX(this.id)"> 2</h:selectBooleanCheckbox>
+            <br/>
+                <h:selectBooleanCheckbox value="false" id="bcb3" render="messages" onclick="pressX(this.id)"> 3</h:selectBooleanCheckbox>
+                <h:selectBooleanCheckbox value="false" id="bcb4" render="messages" onclick="pressX(this.id)"> 4</h:selectBooleanCheckbox>
+                <h:selectBooleanCheckbox value="false" id="bcb5" render="messages" onclick="pressX(this.id)"> 5</h:selectBooleanCheckbox>
+            <br/>
+                <h:outputLabel for="y" value="Y"/>
+            <br/>
+                <h:inputText id="y" value="#{bean.y}" required="true"
+                             requiredMessage="Y Value is required."
+                             converterMessage="Y Value must be a number."
+                             validatorMessage="Y Value must be a number between -3 and 3.">>
+                    <f:validateDoubleRange minimum="-3" maximum="3"/>
+                    <f:ajax event="change" render="messages" />
+                </h:inputText>
+            <br/>
+
+            <br/>
+        <h:outputText id="output" value="R = #{bean.r}" />
+        <h:inputHidden id="r" value="#{bean.r}" />
+        <p:slider for="r"
+                  minValue="1"
+                  maxValue="4"
+                  step="0.5"
+                  display="output"
+                  displayTemplate="R = {value}"/>
+            <br/>
+                <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="checkR()"
+                                 style="background: #1c222a; border: 1px solid #edb021;"
+                                 icon="pi pi-chevron-circle-right" value="Проверить" action="#{bean.save}" >
+                    <p:ajax render="entries_table"/>
+                </p:commandButton>
+
+    </h:form>
+    <br/>
+    <p:dataTable id="entries_table" var="entry" value="#{entries.entries}">
+        <p:column headerText="id">
+            <h:outputText value="#{entry.id}"/>
+        </p:column>
+        <p:column headerText="x">
+            <h:outputText value="#{entry.x}"/>
+        </p:column>
+        <p:column headerText="y">
+            <h:outputText value="#{entry.y}"/>
+        </p:column>
+        <p:column headerText="r">
+            <h:outputText value="#{entry.r}"/>
+        </p:column>
+        <p:column headerText="status">
+            <h:outputText value="#{entry.status}"/>
+        </p:column>
+        <p:column headerText="time">
+            <h:outputText value="#{entry.creationTime}"/>
+        </p:column>
+    </p:dataTable>
+    <br/>
+    <p:button outcome="index" icon="pi pi-home" value="Домой"/>
+    <div class="shaded animated footer">ИТМО<br/>2020</div>
+    <h:outputScript library="js" name="canvas.js"/>
+    <h:outputScript library="js" name="validator.js"/>
+    <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+    <h:outputScript library="js" name="validator.js" target="head"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+    <h:outputStylesheet library="css" name="stylesheet.css"/>
+
+</h:body>
+</html>
