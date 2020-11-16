@@ -1,9 +1,8 @@
 let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
 
-drawPlate();
 
-function drawPlate() {
+function drawPlate(r) {
     context.fillStyle = "#1c222a";
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = "#edc021";
@@ -54,13 +53,13 @@ function drawPlate() {
     context.fillStyle = "#ffffff";
     context.font = "10pt Arial";
     context.fillText("Y", 160, 15);
-    context.fillText("R", 160, 55);
-    context.fillText("R/2", 160, 105);
-    context.fillText("-R/2", 160, 205);
-    context.fillText("-R", 160, 255);
+    context.fillText(r, 160, 55);
+    context.fillText(r/2, 160, 105);
+    context.fillText(-r/2, 160, 205);
+    context.fillText(-r, 160, 255);
     context.fillText("X", 285, 140);
-    context.fillText("R/2", 195, 140);
-    context.fillText("R", 245, 140);
-    context.fillText("-R", 45, 140);
-    context.fillText("-R/2", 95, 140);
+    context.fillText(r/2, 195, 140);
+    context.fillText(r, 245, 140);
+    context.fillText(-r, 45, 140);
+    context.fillText(-r/2, 95, 140);
 }

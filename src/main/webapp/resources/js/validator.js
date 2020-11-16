@@ -2,6 +2,14 @@ let x = 1;
 let y;
 let r = 1;
 
+drawPlate(1);
+
+function redraw(event, ui){
+    r =  $('#form\\:r').val();
+    drawPlate(r);
+
+}
+
 function pressX(id){
     (x === parseInt(id.trim().substr(8))) ? document.getElementById(id).checked = true : x = parseInt(id.trim().substr(8));
     for(let i=-3 ;i<=5; i++) if (id !== 'form:bcb'+i) document.getElementById('form:bcb'+i).checked = false;
@@ -14,7 +22,7 @@ function getY(){
 }
 
 function getR(){
-    r =  document.getElementById('form:r').value;
+    r =  $('#form\\:r').val();
 }
 
 function draw() {
@@ -46,15 +54,20 @@ function show_coords(event) {
         let rect = event.currentTarget.getBoundingClientRect();
         let x = event.clientX - rect.left;
         let y = event.clientY - rect.top;
-        let basis = 100 / $('#form\\:r').val();
+        let r = $('#form\\:r').val();
+        let basis = 100 / parseFloat($('#form\\:r').val());
         let cx = ((x - 150) / basis);
         let cy = ((150 - y) / basis);
+        x = document.getElementById('form:x').value;
+        y = document.getElementById('form:y').value;
         console.log("X coords: " + x + ", Y coords: " + y + ",R: " + basis);
         console.log("X coords: " + cx + ", Y coords: " + cy);
         $('#form\\:x').val(cx);
         $('#form\\:y').val(cy);
-        //drawPoint(cx, cy, $('#form\\:r').val(), true ) // ВРЕМЕННО
+        drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) ) // ВРЕМЕННО
         send();
+        document.getElementById('form:x').value = x;
+        document.getElementById('form:y').value = y;
 }
 
 function drawPoint(x_value, y_value, r, flag) {
@@ -69,3 +82,20 @@ function drawPoint(x_value, y_value, r, flag) {
     context.fill();
     context.stroke();
 }
+
+function check(x,y,r){
+    if (x >= 0) {
+        if (y >= 0) {
+            return -2 * x + r >= y;
+        } else {
+            return x <= r  && y >= -r/2;
+        }
+    } else {
+        if (y > 0) {
+            return false;
+        } else {
+            return x * x + y * y <= (r/2) * (r/2);
+        }
+    }
+}
+

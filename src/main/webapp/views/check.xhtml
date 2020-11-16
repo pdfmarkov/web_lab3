@@ -67,6 +67,7 @@
                   maxValue="4"
                   step="0.5"
                   display="output"
+                  onSlideEnd="redraw(event, ui)"
                   displayTemplate="R = {value}"/>
         <br/>
         <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="send()"
@@ -105,7 +106,6 @@
     <h:outputScript library="js" name="canvas.js"/>
     <h:outputScript library="js" name="validator.js"/>
     <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
-    <h:outputScript library="js" name="validator.js" target="head"/>
     <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
     <h:outputStylesheet library="css" name="stylesheet.css"/>
 
