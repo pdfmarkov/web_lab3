@@ -67,10 +67,11 @@
                   maxValue="4"
                   step="0.5"
                   display="output"
+                  onSlide="redraw(event, ui)"
                   onSlideEnd="redraw(event, ui)"
                   displayTemplate="R = {value}"/>
         <br/>
-        <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="send()"
+        <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="send(); redraw(event, ui)"
                          style="background: #1c222a; border: 1px solid #edb021;"
                          icon="pi pi-chevron-circle-right" value="Проверить">
             <p:ajax render="entries_table"/>

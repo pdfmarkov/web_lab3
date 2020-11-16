@@ -2,8 +2,8 @@ let x = 1;
 let y;
 let r = 1;
 
-drawPlate(1);
-draw(1);
+drawPlate(parseFloat($('#form\\:r').val()));
+draw(parseFloat($('#form\\:r').val()));
 
 function redraw(event, ui){
     r =  $('#form\\:r').val();
