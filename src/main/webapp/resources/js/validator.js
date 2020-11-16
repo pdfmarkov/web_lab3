@@ -3,11 +3,12 @@ let y;
 let r = 1;
 
 drawPlate(1);
+draw();
 
 function redraw(event, ui){
     r =  $('#form\\:r').val();
     drawPlate(r);
-
+    draw();
 }
 
 function pressX(id){
@@ -17,20 +18,12 @@ function pressX(id){
     document.getElementById('form:x').value = x;
 }
 
-function getY(){
-    y =  document.getElementById('form:y').value;
-}
-
-function getR(){
-    r =  $('#form\\:r').val();
-}
-
 function draw() {
+    r =  $('#form\\:r').val();
     let entries = getEntries();
     if (entries === null) entries = [];
-    entries.forEach(e => drawPoint(e.x,e.y,e.r,e.status));
+    entries.forEach(e => drawPoint(e.x,e.y,parseFloat(r),check(e.x,e.y,parseFloat(r))));
 }
-
 
 function getEntries() {
     let res = [];
@@ -64,10 +57,12 @@ function show_coords(event) {
         console.log("X coords: " + cx + ", Y coords: " + cy);
         $('#form\\:x').val(cx);
         $('#form\\:y').val(cy);
-        drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) ) // ВРЕМЕННО
         send();
         document.getElementById('form:x').value = x;
         document.getElementById('form:y').value = y;
+        drawPlate(r);
+        draw();
+        drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) ) // ВРЕМЕННО
 }
 
 function drawPoint(x_value, y_value, r, flag) {
