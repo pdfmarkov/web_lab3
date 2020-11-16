@@ -3,12 +3,12 @@ let y;
 let r = 1;
 
 drawPlate(1);
-draw();
+draw(1);
 
 function redraw(event, ui){
     r =  $('#form\\:r').val();
     drawPlate(r);
-    draw();
+    draw(r);
 }
 
 function pressX(id){
@@ -18,8 +18,7 @@ function pressX(id){
     document.getElementById('form:x').value = x;
 }
 
-function draw() {
-    r =  $('#form\\:r').val();
+function draw(r) {
     let entries = getEntries();
     if (entries === null) entries = [];
     entries.forEach(e => drawPoint(e.x,e.y,parseFloat(r),check(e.x,e.y,parseFloat(r))));
@@ -61,7 +60,7 @@ function show_coords(event) {
         document.getElementById('form:x').value = x;
         document.getElementById('form:y').value = y;
         drawPlate(r);
-        draw();
+        draw(r);
         drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) ) // ВРЕМЕННО
 }
 
