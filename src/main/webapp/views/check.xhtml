@@ -22,7 +22,7 @@
     </div>
     <br/>
 
-    <canvas width="300px" height="300px" id="canvas">
+    <canvas width="300px" height="300px" id="canvas" onclick="show_coords(event)">
 
         Canvas not supported.
 
@@ -61,20 +61,22 @@
 
             <br/>
         <h:outputText id="output" value="R = #{bean.r}" />
-        <h:inputHidden id="r" value="#{bean.r}" />
+        <h:inputHidden id="r" value="#{bean.r}" /><br/>
         <p:slider for="r"
                   minValue="1"
                   maxValue="4"
                   step="0.5"
                   display="output"
                   displayTemplate="R = {value}"/>
-            <br/>
-                <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="checkR()"
-                                 style="background: #1c222a; border: 1px solid #edb021;"
-                                 icon="pi pi-chevron-circle-right" value="Проверить" action="#{bean.save}" >
-                    <p:ajax render="entries_table"/>
-                </p:commandButton>
-
+        <br/>
+        <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="send()"
+                         style="background: #1c222a; border: 1px solid #edb021;"
+                         icon="pi pi-chevron-circle-right" value="Проверить">
+            <p:ajax render="entries_table"/>
+        </p:commandButton>
+        <p:remoteCommand id="remote" name="send" update="entries_table" label="Check value"
+                         style="background: #1c222a; border: 1px solid #edb021;"
+                         icon="pi pi-chevron-circle-right" value="Проверить" action="#{bean.save}" />
     </h:form>
     <br/>
     <p:dataTable id="entries_table" var="entry" value="#{entries.entries}">
