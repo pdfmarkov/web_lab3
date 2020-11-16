@@ -43,6 +43,7 @@ function getEntries() {
 }
 
 function show_coords(event) {
+        let validationError = 'Y Value must be a number between -3 and 3';
         let rect = event.currentTarget.getBoundingClientRect();
         let x = event.clientX - rect.left;
         let y = event.clientY - rect.top;
@@ -61,7 +62,7 @@ function show_coords(event) {
         document.getElementById('form:y').value = y;
         drawPlate(r);
         draw(r);
-        drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) ) // ВРЕМЕННО
+        (cy>=-3 && cy<=3) ? drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) ) : alert(validationError);
 }
 
 function drawPoint(x_value, y_value, r, flag) {
