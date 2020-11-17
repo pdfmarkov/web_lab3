@@ -5,7 +5,7 @@ let r = 1;
 drawPlate(parseFloat($('#form\\:r').val()));
 draw(parseFloat($('#form\\:r').val()));
 
-function redraw(event, ui){
+function redraw(){
     r =  $('#form\\:r').val();
     drawPlate(r);
     draw(r);
@@ -51,18 +51,24 @@ function show_coords(event) {
         let basis = 100 / parseFloat($('#form\\:r').val());
         let cx = ((x - 150) / basis);
         let cy = ((150 - y) / basis);
-        x = document.getElementById('form:x').value;
-        y = document.getElementById('form:y').value;
-        console.log("X coords: " + x + ", Y coords: " + y + ",R: " + basis);
-        console.log("X coords: " + cx + ", Y coords: " + cy);
-        $('#form\\:x').val(cx);
-        $('#form\\:y').val(cy);
-        send();
-        document.getElementById('form:x').value = x;
-        document.getElementById('form:y').value = y;
-        drawPlate(r);
-        draw(r);
-        (cy>=-3 && cy<=3) ? drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) ) : alert(validationError);
+
+        // console.log("X coords: " + x + ", Y coords: " + y + ",R: " + basis);
+        // console.log("X coords: " + cx + ", Y coords: " + cy);
+        // $('#form\\:x').val(cx);
+        // $('#form\\:y').val(cy);
+        // send();
+
+        if (cy>=-3 && cy<=3) {
+            document.getElementById("tableForm:pointX").value = cx;
+            document.getElementById("tableForm:pointY").value = cy;
+            document.getElementById("tableForm:pointR").value = r;
+            document.getElementById("tableForm:hiddenButton").click();
+
+            drawPlate(r);
+            draw(r);
+            drawPoint(cx, cy, r, check(cx,cy,parseFloat(r)) )
+        } else alert(validationError);
+
 }
 
 function drawPoint(x_value, y_value, r, flag) {

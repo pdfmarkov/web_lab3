@@ -29,9 +29,9 @@
     </canvas>
 
     <h:form id="form">
+        <p:panel>
 
             <p:messages id="messages"/>
-
 
                 <h:outputLabel for="x" value="X"/>
                 <h:inputHidden id="x" required="true" value="#{bean.x}"/>
@@ -71,14 +71,21 @@
                   onSlideEnd="redraw(event, ui)"
                   displayTemplate="R = {value}"/>
         <br/>
-        <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="send(); redraw(event, ui)"
+        <p:commandButton id="checkButton" update="entries_table" label="Check value" onclick="redraw()"
                          style="background: #1c222a; border: 1px solid #edb021;"
-                         icon="pi pi-chevron-circle-right" value="Проверить">
-            <p:ajax render="entries_table"/>
+                         icon="pi pi-chevron-circle-right" value="Проверить" action="#{bean.save}" >
+            <p:ajax/>
         </p:commandButton>
-        <p:remoteCommand id="remote" name="send" update="entries_table" label="Check value"
-                         style="background: #1c222a; border: 1px solid #edb021;"
-                         icon="pi pi-chevron-circle-right" value="Проверить" action="#{bean.save}" />
+        </p:panel>
+    </h:form>
+    <h:form id="tableForm" style="display: none">
+    <h:inputHidden id="pointX" value="#{bean.x}"/>
+    <h:inputHidden id="pointY" value="#{bean.y}"/>
+    <h:inputHidden id="pointR" value="#{bean.r}"/>
+    <p:commandButton id="hiddenButton" update="entries_table" label="Check value"
+                     icon="pi pi-chevron-circle-right" value="Check" action="#{bean.save}">
+        <p:ajax/>
+    </p:commandButton>
     </h:form>
     <br/>
     <p:dataTable id="entries_table" var="entry" value="#{entries.entries}">
