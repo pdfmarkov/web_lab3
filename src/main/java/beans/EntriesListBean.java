@@ -12,13 +12,14 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
 @ManagedBean(name = "entries")
-@ViewScoped
+@SessionScoped
 @Data
 @NoArgsConstructor
-public class EntriesListBean {
+public class EntriesListBean implements Serializable {
 
     @Inject
     private EntryRepository entryRepository;

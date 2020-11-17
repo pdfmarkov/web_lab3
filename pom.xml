@@ -58,13 +58,12 @@
             <artifactId>primefaces</artifactId>
             <version>7.0</version>
         </dependency>
-        <dependency>
-            <groupId>net.bootsfaces</groupId>
-            <artifactId>bootsfaces</artifactId>
-            <scope>compile</scope>
-            <version>1.4.1</version>
-        </dependency>
-
+<!--        <dependency>-->
+<!--            <groupId>net.bootsfaces</groupId>-->
+<!--            <artifactId>bootsfaces</artifactId>-->
+<!--            <scope>compile</scope>-->
+<!--            <version>1.4.1</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
